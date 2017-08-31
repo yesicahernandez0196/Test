@@ -17,11 +17,19 @@ function platzom (str){
     }
 
 
-//alabra inicia con z, se le añade "pe" al final de la palabra
+//si la palabra inicia con z, se le añade "pe" al final de la palabra
 if (str.toLowerCase().startsWith(`z`)){
     translation += `pe`
 }
+// si la palabra traducida tiene 10 o mas letras se debe partir a la mitad y unir con un guion
+var length = str.length;
+if (length >= 10) {
+  translation = str.slice(0, Math.round(length / 2)) + '-' + str.slice(Math.round(length / 2));
+}
+
 return translation;
 }
+
 console.log(platzom("contar"));
 console.log(platzom("zorro"));
+console.log(platzom("paranguaricutirimicuaro"));
