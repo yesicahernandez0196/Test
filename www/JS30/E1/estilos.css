@@ -1,0 +1,50 @@
+html {
+    font-size: 10px;
+    background: url(https://ugc.kn3.net/i/origin/http://3.bp.blogspot.com/-U7KBeRwcx64/UUOAKNdt0LI/AAAAAAAAFL4/SzpuL30pqbQ/s1600/Los+Simpsons.jpg) bottom center;
+    background-size: cover;
+  }
+  body,html {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+  
+  .keys {
+    display: flex;
+    flex: 1;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .key {
+    border: .4rem solid #2F2F05;
+    border-radius: .5rem;
+    margin: 1rem;
+    font-size: 1.5rem;
+    padding: 1rem .5rem;
+    transition: all .07s ease;
+    width: 10rem;
+    text-align: center;
+    color: white;
+    background: rgba(181, 7, 97, 0.40);
+    text-shadow: 0 0 .5rem #D30407;
+  }
+  
+  .playing {
+    transform: scale(1.1);
+    border-color: #00FFC3;
+    box-shadow: 0 0 1rem #00FF2F;
+  }
+  
+  kbd {
+    display: block;
+    font-size: 4rem;
+  }
+  
+  .sound {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    color: #340357;
+  }

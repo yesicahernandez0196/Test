@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>amor</title>
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <style>
+    html {
+      box-sizing: border-box;
+      background:#ffc600;
+      font-family:'helvetica neue';
+      font-size: 20px;
+      font-weight: 200;
+    }
+    
+    body {
+      margin: 2;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+    
+    .panels {
+      min-height:100vh;
+      overflow: hidden;
+      display: flex;
+    }
+    .panel {
+      background:chartreuse;
+      box-shadow:inset 0 0 0 5px blue(255,255,255,0.1);
+      color: whitesmoke;
+      text-align: center;
+      align-items:center;
+      transition:
+        font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        background 0.2s;
+      font-size: 20px;
+      background-size:cover;
+      background-position:center;
+      flex: 1;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel1 {background-image:url(http://imagenpng.com/wp-content/uploads/2017/01/paisajes-bonitos-de-o.jpg);}
+    .panel2 {background-image:url(http://todofondos.com/bin/fondos/02/65/25d.jpg);}
+    .panel3 {background-image:url(http://imagenpng.com/wp-content/uploads/2017/01/Fotos-de-paisajes.jpg);}
+    .panel4 {background-image:url(http://imagenpng.com/wp-content/uploads/2017/01/paisaje-t%C3%ADpico.jpg);}
+    .panel5 {background-image:url(http://imagenpng.com/wp-content/uploads/2017/01/atardecer-568470fbef6.jpg);}
+
+
+    
+    .panel > * {
+      margin:0;
+      width: 100%;
+      transition:transform 0.5s;
+      flex: 1 0 auto;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .panel > *:first-child {transform: translateY(-100%);}
+    .panel.open-active > *:first-child { transform: translateY(0);}
+    .panel > *:last-child {transform: translateY(100%);}
+    .panel.open-active > *:last-child {transform: translateY(0);}
+    
+    .panel p {
+      text-transform: uppercase;
+      font-family: 'Amatic SC', cursive;
+      text-shadow:0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+      font-size: 2em;
+    }
+    
+    .panel p:nth-child(2) {
+      font-size: 4em;
+    }
+    .panel.open {
+      flex: 5;
+      font-size:40px;
+    }
+  </style>
+
+
+  <div class="panels">
+    <div class="panel panel1">
+      <p>No sera facil</p><p>pero</p><p>valdra la pena</p>
+    </div>
+
+    <div class="panel panel2">
+      <p>Sonrie</p><p>siempre</p><p>y la vida te sonreira</p>
+    </div>
+
+    <div class="panel panel3">
+      <p>Limpia tu</p><p>mente</p><p>del no puedo</p>
+    </div>
+    
+    <div class="panel panel4">
+      <p>nunca es tarde para</p><p>cambiar</p><p>tu estilo de vida</p>
+    </div>
+    
+    <div class="panel panel5">
+      <p>El exito esta en el</p><p>esfuerzo</p><p>y no en lo que piensan de ti</p>
+    </div>
+  
+</div>
+
+  <script>
+    const panels = document.querySelectorAll('.panel');
+    function toggleOpen() {
+      console.log('Hello');
+      this.classList.toggle('open');
+    }
+
+    function toggleActive(e) {
+      console.log(e.propertyName);
+      if (e.propertyName.includes('flex')) {
+        this.classList.toggle('open-active');
+      }
+
+    }
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+  </script>
+
+</body>
+</html>
