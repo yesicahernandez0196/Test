@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Algo sobre mi</title>
+</head>
+<body>
+
+  <div class="site-wrap">
+
+    <h1>Hola soy Yesica.</h1>
+
+    <p>Esta pagina web es para mi clase de graficación que llevo con el profe Alonso, no se que poner aqui, ya quiero acabar mis 5 programas de esta semana asi que esto sera  muy breve.
+        </p>
+    <img src="https://scontent.felp1-1.fna.fbcdn.net/v/t1.0-9/21432897_903935959769426_1754346755401692593_n.jpg?oh=90433e064514d951bf8da6925c486804&oe=5A585F07" class="align-left slide-in">
+       <p> Ellos son mis dos hermosos hijos </p>
+    <img src="https://scontent.felp1-1.fna.fbcdn.net/v/t1.0-9/21231019_900984120064610_2690312332929894201_n.jpg?oh=990e831cc012b7039714e4093c1255fb&oe=5A16C61C" class="align-right slide-in">
+        <p> Yo con mi esposo en una boda que estuvo muy padre la verdad jaja</p>
+        <p> Y ya me voy que tengo que terminar mis otros programas byebye</p>
+
+   
+  </div>
+
+  <script>
+    function debounce(func, wait = 20, immediate = true) {
+      var timeout;
+      return function() {
+        var context = this, args = arguments;
+        var later = function() {
+          timeout = null;
+          if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+      };
+    };
+    const sliderImages = document.querySelectorAll('.slide-in');
+    function checkSlide() {
+      sliderImages.forEach(sliderImage => {
+        const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2;
+        const imageBottom = sliderImage.offsetTop + sliderImage.height;
+        const isHalfShown = slideInAt > sliderImage.offsetTop;
+        const isNotScrolledPast = window.scrollY < imageBottom;
+        if (isHalfShown && isNotScrolledPast) {
+          sliderImage.classList.add('active');
+        } else {
+          sliderImage.classList.remove('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', debounce(checkSlide));
+  </script>
+
+  <style>
+    html {
+      box-sizing: border-box;
+      background:#C4203F;
+      font-family:'helvetica neue';
+      font-size: 25px;
+      font-weight: 100;
+    }
+    body {
+      margin: 0;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    .site-wrap {
+      max-width: 700px;
+      margin: 50px auto;
+      background:#DE2648;
+      padding:40px;
+      text-align: justify;
+    }
+    .align-left {
+      float:left;
+      margin-right:15px;
+    }
+    .align-right {
+      float:right;
+      margin-left:15px;
+    }
+    .slide-in {
+      opacity:0;
+      transition:all .2s;
+    }
+    .align-left.slide-in {
+      transform:translateX(-25%) scale(0.30);
+    }
+    .align-right.slide-in {
+      transform:translateX(25%) scale(0.30);
+    }
+    .slide-in.active {
+      opacity:1;
+      transform:translateX(0%) scale(1);
+    }
+  </style>
+</body>
+</html>

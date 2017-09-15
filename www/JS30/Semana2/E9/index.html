@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Perrunos</title>
+</head>
+<body>
+
+  <p onClick="perros()">Mira tu consola JavaScript</p>
+
+  <script>
+    const dogs = [{ name: 'Cachorrin', age: 2 }, { name: 'Kevin', age: 8 }];
+    function perros() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+    
+    console.log('Hola');
+    console.log('Yo soy hermoso');
+    console.warn('oh nooooo');
+    console.error ('Demoios!');
+    console.info('Soy hermosa');
+    const p = document.querySelector('p');
+    console.assert(p.classList.contains('ouch'), 'Qué paso aqui?');
+    console.clear();
+    console.log(p);
+    console.dir(p);
+    console.clear();
+    
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`El es ${dog.name}`);
+      console.log(`${dog.name} tiene ${dog.age} años`);
+      console.log(`${dog.name} tiene ${dog.age * 7} años `);
+      console.groupEnd(`${dog.name}`);
+    });
+    
+    console.count('Wason');
+    console.count('Wason');
+    console.count('Toby');
+    console.count('Toby');
+    console.count('Wason');
+    console.count('Toby');
+    console.count('Wason');
+    console.count('Toby');
+    console.count('Toby');
+    console.count('Toby');
+    console.count('Toby');
+    console.count('Toby');
+    
+    console.time('Recuperacion de datos');
+    fetch('https://api.github.com/users/wesbos')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('Recuperacion de datos');
+        console.log(data);
+      });
+    console.table(dogs);
+  </script>
+</body>
+</html>
