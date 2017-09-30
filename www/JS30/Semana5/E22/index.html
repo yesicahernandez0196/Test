@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>coorden palabras</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <nav>
+      <ul class="menu">
+        <li><a href="">inicio</a></li>
+        <li><a href="">Ver más</a></li>
+        <li><a href="">Tweets</a></li>
+        <li><a href="">Facebook</a></li>
+        <li><a href="">Contactanos</a></li>
+      </ul>
+    </nav>
+
+    <div class="wrapper">
+      <p>El medio  <a href="">ambiente</a> es el conjunto de componentes <a href="">fisicos</a> <a href="">químicos</a> <a href="">y biológicos</a>externos con los que interactuan los </p>
+      <a href="">seres vivos</a>. Respecto al <a href="">ser humano</a>, comprende el conjunto de factores <a href="">naturales</a> <a href=""> sociales</a>  <a href="">y culturales</a>existentes en un lugar y momento determinado, que influyen en su vida y afectarán a las generaciones futuras.</p>
+      </div>
+
+<script>
+  const triggers = document.querySelectorAll('a');
+  const highlight = document.createElement('span');
+  highlight.classList.add('highlight');
+  document.body.appendChild(highlight);
+  function highlightLink() {
+    const linkCoords = this.getBoundingClientRect();
+    console.log(linkCoords); 
+    const coords = {
+      width: linkCoords.width,
+      height: linkCoords.height,
+      top: linkCoords.top + window.scrollY,
+      left: linkCoords.left + window.scrollX
+    };
+    highlight.style.width = `${coords.width}px`;
+    highlight.style.height = `${coords.height}px`;
+    highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+  }
+  triggers.forEach(a => a.addEventListener('mouseenter', highlightLink));
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <header>
+    <h1>Desastres naturales</h1>
+  </header>
+
+  <nav id="main">
+    <ul>
+      <li class="logo"><a href="#">Huracanes</a></li>
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">Acerca de..</a></li>
+      <li><a href="#">Imagenes</a></li>
+
+    </ul>
+  </nav>
+
+  <div class="site-wrap">
+<p>Ciclón tropical es un término meteorológico usado para referirse a un sistema tormentoso caracterizado por una circulación cerrada alrededor de un centro de baja presión y que produce fuertes vientos y abundante lluvia. Los ciclones tropicales extraen su energía de la condensación de aire húmedo, produciendo fuertes vientos. Se distinguen de otras tormentas ciclónicas, como las bajas polares, por el mecanismo de calor que las alimenta, que las convierte en sistemas tormentosos de "núcleo cálido". Dependiendo de su fuerza un ciclón tropical puede llamarse depresión tropical, tormenta tropical, huracán y de su localización se pueden llamar tifón (especialmente en las Islas Filipinas y China) o simplemente ciclón.
+      
+      Su nombre se deriva de los trópicos y su naturaleza ciclónica. El término "tropical" se refiere tanto al origen geográfico de estos sistemas, que se forman casi exclusivamente en las regiones intertropicales del planeta, como a su formación en masas de aire tropical de origen marino. El término "ciclón" se refiere a la naturaleza ciclónica de las tormentas, con una rotación en el sentido contrario al de las agujas del reloj en el hemisferio norte y en el sentido de las agujas del reloj en el hemisferio sur.
+      
+      Los ciclones se desarrollan sobre extensas superficies de agua cálida y cuando las condiciones atmosféricas alrededor de una débil perturbación en la atmósfera son favorables. A veces se forman cuando otros tipos de ciclones adquieren características tropicales.
+      
+      Los sistemas tropicales son conducidos por vientos direccionales hacia la troposfera; si las condiciones continúan siendo favorables, la perturbación tropical se intensifica y puede llegar a desarrollarse un ojo, y pierden su fuerza cuando penetran en tierra o si las condiciones alrededor del sistema se deterioran este se disipa.
+      
+      Los ciclones tropicales producen grandes daños en la zonas costeras mientras que regiones interiores y altas están relativamente a salvo de los daños, también producen lluvias torrenciales que a su vez pueden producir inundaciones y corrimientos de tierra y también provocan marejadas ciclónicas en áreas costeras y las cuales dependiendo de la geografía pueden producir inundaciones extensas a más de 40 km hacia el interior en llanuras litorales extensas y de pendiente escasa.6​
+      
+      Aunque sus efectos en las poblaciones y barcos pueden ser catastróficos, los ciclones tropicales pueden reducir los efectos de una sequía. Además, transportan el calor de los trópicos a latitudes más templadas, lo que hace que sean un importante mecanismo de la circulación atmosférica global que mantiene en equilibrio la troposfera y mantiene relativamente estable y cálida la temperatura terrestre.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Hurricane-es.svg/350px-Hurricane-es.svg.png" class="align-right slide-in">
+    
+  </div>
+
+  <script>
+    
+    const nav = document.querySelector('#main');
+    let topOfNav = nav.offsetTop;
+    function fixNav() {
+      if(window.scrollY >= topOfNav) {
+        document.body.style.paddingTop = nav.offsetHeight + 'px';
+        document.body.classList.add('fixed-nav');
+      } else {
+        document.body.classList.remove('fixed-nav');
+        document.body.style.paddingTop = 0;
+      }
+    }
+    window.addEventListener('scroll', fixNav);
+  </script>
+
+
+</body>
+</html>
