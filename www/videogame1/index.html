@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pong Game</title>
+    <style>
+        *{
+            padding:0;
+            margin: 0;
+        }
+        canvas{
+            background:palevioletred; /*le damos color al canvas*/
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id = "myCanvas" width ="960" height="640"></canvas>
+    <script> /* aqui arriba le damos el tamaño del canvas*/
+
+        /*var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        ctx.beginPath();
+        ctx.rect(20, 40, 50, 50);
+        ctx.fillStyle = '#FF0000';
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(240,160,20,0, Math.PI*2, false);
+        ctx.fillStyle = "green";
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.rect(160,10,100,40);
+        ctx.strokeStyle = "rgba(0,0,255,0.5)";
+        ctx.stroke();
+        ctx.closePath();*/
+
+
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var ballRadius = 10;
+    var x = canvas.width/2;
+    var y = canvas.height-30;
+    var dx = 2;
+    var dy = -2;
+    var paddleHeight = 10;
+    var paddleWidth = 75;
+    var paddleX = (canvas.width-paddleWidth)/2;
+    var rightPressed = false;
+    var leftPressed = false;
+    var brickRowCount = 31; /* numero de las filas de ladrillos*/
+    var brickColumnCount = 14;/* numero de las columnas de ladrillos*/
+    var brickWidth = 20; /*Ancho del ladrillo*/
+    var brickHeight = 20; /*Largo del ladrillo*/
+    var brickPadding = 10; /* hueco entre los ladrillos para que no se toquen*/
+    var brickOffsetTop = 20; /*Margen superior para que no se dibujen tocando los bordes*/
+    var brickOffsetLeft = 20;/*Margen izquierdo para que no se dibujen tocando los bordes*/
+    var score = 0; /*variable para guardar el contador*/
+    var lives = 3; /*variable para dar vidas*/
+
+    var bricks = []; /*bricks es un arreglo y se va a convertir en una matriz de indice 2, voy a tener columas y filas*/
+    for(c=0; c<brickColumnCount; c++) { /*recorre las columas de las filas para saber cuantos bricks hay*/
+        bricks[c] = [];
+        for(r=0; r<brickRowCount; r++) {
+            bricks[c][r] = { x: 0, y: 0, status: 1 };
+                bricks[c][r] = {x:0, y:0, status: 1};/*brick c r va a tener dos prioridades, se van a convertir en un objeto, yo
+                puedo acceder a estas propiedades siempre y cuando le mande un indice*/
+        }
+    }
+
+    document.addEventListener("keydown", keyDownHandler, false);
+    document.addEventListener("keyup", keyUpHandler, false);
+    document.addEventListener("mousemove", mouseMoveHandler, false); /*añadimos un escuchador para detectar el moviemnto del raton*/
+
+    function keyDownHandler(e) {
+        if(e.keyCode == 39) {
+            rightPressed = true;
+        }
+        else if(e.keyCode == 37) {
+            leftPressed = true;
+        }
+    }
+    function keyUpHandler(e) {
+        if(e.keyCode == 39) {
+            rightPressed = false;
+        }
+        else if(e.keyCode == 37) {
+            leftPressed = false;
+        }
+    }
+    function mouseMoveHandler(e) { /*cambiar la posicion de la pala, basandonos en las coordenadas del puntero del raton*/
+        var relativeX = e.clientX - canvas.offsetLeft; /*relativeX es la posición horizontal del ratón en el  viewport*/
+        if(relativeX > 0 && relativeX < canvas.width) {
+            paddleX = relativeX - paddleWidth/2;
+        }
+    }
+    function collisionDetection() { /*vamos a detectar las colisiones*/
+        for(c=0; c<brickColumnCount; c++) {
+            for(r=0; r<brickRowCount; r++) {
+                var b = bricks[c][r];
+                if(b.status == 1) { /*si el ladrillo está activo (status 1) comrpobaremos si hay colisión. 
+                    Si hay colisión, pondremos el status de ese ladrillo a 0 para no volver a pintarlo. */
+                    if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+                        dy = -dy;
+                        b.status = 0;
+                        score++; /*sumar punto cada vez que se rompe un ladrillo*/
+                        if(score == brickRowCount*brickColumnCount) {
+                            alert("Has ganado, FELICIDADES!!");
+                            document.location.reload();/*vuelve a cargar la página y el juego empieza de nuevo, 
+                                una vez se hace clic sobre el botón del alert()*/
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    function drawBall() { /* aqui dibujamos la pelota*/
+        ctx.beginPath();
+        ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+        ctx.fillStyle = "#FFF55C";
+        ctx.fill();
+        ctx.closePath();
+    }
+    function drawPaddle() {
+        ctx.beginPath();
+        ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+        ctx.fillStyle = "#FFF55C";
+        ctx.fill();
+        ctx.closePath();
+    }
+    function drawBricks() {/*Aqui dibujamos los bloques*/
+        for(c=0; c<brickColumnCount; c++) {
+            for(r=0; r<brickRowCount; r++) {
+                if(bricks[c][r].status == 1) {
+                    var brickX = (r*(brickWidth+brickPadding))+brickOffsetLeft;/*de izquierda a derecha*/
+                    var brickY = (c*(brickHeight+brickPadding))+brickOffsetTop;/*de arriba hacia abajo*/
+                    bricks[c][r].x = brickX;
+                    bricks[c][r].y = brickY;
+                    ctx.beginPath();/*inicia el camino*/
+                    ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                    ctx.fillStyle = "purple"; /*rellenamos el triangulito*/
+                    ctx.fill();
+                    ctx.closePath();
+                }
+            }
+        }
+    }
+    function drawScore() { /*funcion para enseñar eñ contador en pantalla*/
+        ctx.font = "16px Arial"; /*fijar el tamaño y fuente*/
+        ctx.fillStyle = "#27DECC"; /*fijamos color */
+        ctx.fillText("Score: "+score, 8, 20); /*para escribir el texto y el lugar en el que se va a dibujar*/
+    }
+
+    function drawLives() { /*mostrar por pantalla las vidas*/
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#27DECC";
+        ctx.fillText("Lives: "+lives, canvas.width-65, 20);
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBricks();
+        drawBall();
+        drawPaddle();
+        drawScore();
+        drawLives();
+        collisionDetection();
+
+        
+        if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+            dx = -dx;
+        }
+        if(y + dy < ballRadius) {
+            dy = -dy;
+        }
+        else if(y + dy > canvas.height-ballRadius) {
+            if(x > paddleX && x < paddleX + paddleWidth) {
+                dy = -dy;
+            }
+            else {
+                lives--; /* Para que el juego no termine inmediatamente*/
+                if(!lives) {
+                    alert("GAME OVER");
+                    document.location.reload();
+                }
+                else {
+                    x = canvas.width/2;
+                    y = canvas.height-30;
+                    dx = 2;
+                    dy = -2;
+                    paddleX = (canvas.width-paddleWidth)/2;
+                }
+            }
+        }
+        
+        if(rightPressed && paddleX < canvas.width-paddleWidth) {
+            paddleX += 7;
+        }
+        else if(leftPressed && paddleX > 0) {
+            paddleX -= 7;
+        }
+        
+        x += dx;
+        y += dy;
+        requestAnimationFrame(draw); /*se llamara asi misma una y otra vez*/
+    }
+
+    draw();
+
+
+   
+    </script>
+    /*
+    agregar audio
+    controls : muestra los controles estándar de HTML5 para audio en una página web.
+    autoplay : hace que el audio se reproduzca automáticamente.
+    loop : hace que el audio se repita automáticamente.*/
+<audio src="Questing.wav" controls autoplay loop>
+    <p>Tu navegador no implementa el elemento audio</p>
+    </audio>
+   
+    </body>
+    </html>

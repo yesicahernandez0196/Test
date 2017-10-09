@@ -332,9 +332,7 @@
     this.dy = dy || 0;
   }
   
-  /**
-   * Advance the vectors position by dx,dy
-   */
+
   Vector.prototype.advance = function() {
     this.x += this.dx;
     this.y += this.dy;
