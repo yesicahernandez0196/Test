@@ -17,11 +17,11 @@ html {
     align-items: center;
   
     background-image:
-    radial-gradient(circle at 100% 150%, #D30051 24%, #42D2BB 25%, #42D2BB 28%, #D30051 29%, #D30051 36%, #42D2BB 36%, #42D2BB 40%, transparent 40%, transparent),
-    radial-gradient(circle at 0    150%, #D30051 24%, #42D2BB 25%, #42D2BB 28%, #D30051 29%, #D30051 36%, #42D2BB 36%, #42D2BB 40%, transparent 40%, transparent),
-    radial-gradient(circle at 50%  100%, #42D2BB 10%, #D30051 11%, #D30051 23%, #42D2BB 24%, #42D2BB 30%, #D30051 31%, #3BC1AC 43%, #42D2BB 44%, #42D2BB 50%, #3BC1AC 51%, #3BC1AC 63%, #42D2BB 64%, #42D2BB 71%, transparent 71%, transparent),
-    radial-gradient(circle at 100% 50%, #42D2BB 5%, #D30051 6%, #D30051 15%, #42D2BB 16%, #42D2BB 20%, #D30051 21%, #3BC1AC 30%, #42D2BB 31%, #42D2BB 35%, #3BC1AC 36%, #3BC1AC 45%, #42D2BB 46%, #42D2BB 49%, transparent 50%, transparent),
-    radial-gradient(circle at 0    50%, #42D2BB 5%, #D30051 6%, #D30051 15%, #42D2BB 16%, #42D2BB 20%, #D30051 21%, #3BC1AC 30%, #42D2BB 31%, #42D2BB 35%, #3BC1AC 36%, #3BC1AC 45%, #42D2BB 46%, #42D2BB 49%, transparent 50%, transparent);
+    radial-gradient(circle at 100% 150%, rgb(180, 214, 87) 24%, #42D2BB 25%, #42D2BB 28%, #D30051 29%, #D30051 36%, #42D2BB 36%, #42D2BB 40%, transparent 40%, transparent),
+    radial-gradient(circle at 0    150%, rgb(105, 130, 199) 24%, #42D2BB 25%, #42D2BB 28%, #D30051 29%, #D30051 36%, #42D2BB 36%, #42D2BB 40%, transparent 40%, transparent),
+    radial-gradient(circle at 50%  100%, rgb(105, 130, 199) 10%, rgb(180, 214, 87) 11%, #D30051 23%, #42D2BB 24%, #42D2BB 30%, #D30051 31%, #3BC1AC 43%, #42D2BB 44%, #42D2BB 50%, #3BC1AC 51%, #3BC1AC 63%, #42D2BB 64%, #42D2BB 71%, transparent 71%, transparent),
+    radial-gradient(circle at 100% 50%, rgb(210, 66, 179) 5%, rgb(180, 214, 87) 6%, #D30051 15%, #42D2BB 16%, #42D2BB 20%, #D30051 21%, #3BC1AC 30%, #42D2BB 31%, #42D2BB 35%, #3BC1AC 36%, #3BC1AC 45%, #42D2BB 46%, #42D2BB 49%, transparent 50%, transparent),
+    radial-gradient(circle at 0    50%, rgb(210, 66, 179) 5%, rgb(180, 214, 87) 6%, #D30051 15%, #42D2BB 16%, #42D2BB 20%, #D30051 21%, #3BC1AC 30%, #42D2BB 31%, #42D2BB 35%, #3BC1AC 36%, #3BC1AC 45%, #42D2BB 46%, #42D2BB 49%, transparent 50%, transparent);
     background-size:100px 50px;
   }
   
