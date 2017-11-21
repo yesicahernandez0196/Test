@@ -28,7 +28,7 @@
     
         let loader = new THREE.TextureLoader();
     
-        loader.load('public/map1.jpg', function(texture){
+        loader.load('public/map.jpg', function(texture){
             let geometry = new THREE.SphereGeometry(20,100,100)
             let material = new THREE.MeshBasicMaterial({
                 map: texture
@@ -52,7 +52,7 @@
     
         let pointLight = new THREE.PointLight(0x606060);
     
-        pointLight.position.y = 60;
+        pointLight.position.y = 60; 
         pointLight.position.z = 20;
     
         pointLight.castShadow = true;
@@ -67,10 +67,14 @@
     
         function loop(){
             requestAnimationFrame(loop);
-            mesh.rotation.x += 0.01;
+            mesh.rotation.y += 0.01;
             renderer.render(scene, camera);
         }
     
         loop();
     
     })();
+
+
+    //hacer en una escena la forma de una tetera, hacer el mango y la parte de donde sale el liquido y  la tapa
+    //4 tazas, plato. tetera, tazas arriba de platos
