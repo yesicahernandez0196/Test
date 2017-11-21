@@ -1,0 +1,71 @@
+
+
+Se cambio la proyección de la camara, de camara tipo perspectiva a camara ortografica que se utiliza mucho en juegos en 2D
+
+En este modo de proyección, el tamaño de un objeto en la imagen renderizada se mantiene constante independientemente de
+ su distancia de la cámara. 
+
+Esto puede ser útil para renderizar escenas 2D y elementos UI
+  camera = new THREE.OrthographicCamera( WIDTH / - 2,
+                                      WIDTH / 2, HEIGHT / 2,
+                                      HEIGHT / - 2, 0,
+                                      farPlane
+ 
+    );
+    
+    Se cambio el mar, añadiendole mas números de caras en el segmento de radio del cilindro que hacia parecer el mar y ahora 
+    parece una rueda de la fortuna
+    Sea = function(){
+  var geom = new THREE.CylinderGeometry(game.seaRadius,game.seaRadius,game.seaLength,500,10);
+  geom.applyMatrix(new THREE.Matrix4().makeRotationX(-Math.PI/2));
+  geom.mergeVertices();
+  var l = geom.vertices.length;
+
+  this.waves = [];
+
+  for (var i=0;i<l;i++){
+    var v = geom.vertices[i];
+    //v.y = Math.random()*30;
+    this.waves.push({y:v.y,
+                     x:v.x,
+                     z:v.z,
+                     ang:Math.random()*Math.PI*2,
+                     amp:game.wavesMinAmp + Math.random()*(game.wavesMaxAmp-game.wavesMinAmp),
+                     speed:game.wavesMinSpeed + Math.random()*(game.wavesMaxSpeed - game.wavesMinSpeed)
+                    });
+  };
+  
+  Se cambiaron los valores para crear al enemigo y de esta manera hacerlos mas grandes y parecer unas piedras o pelotas rosas
+  Ennemy = function(){
+  var geom = new THREE.TetrahedronGeometry(20,6,2);
+  var mat = new THREE.MeshPhongMaterial({
+    color:Colors.red,
+    shininess:0,
+    specular:0xffffff,
+    shading:THREE.FlatShading
+  });
+  this.mesh = new THREE.Mesh(geom,mat);
+  this.mesh.castShadow = true;
+  this.angle = 0;
+  this.dist = 0;
+}
+
+Se cambiaron los valores de las monedas para que sean mas grandes y con la nueva camara se apreciaran mejor, asi como
+que parezcan un gusanito
+Coin = function(){
+  var geom = new THREE.TetrahedronGeometry(20,1);
+  var mat = new THREE.MeshPhongMaterial({
+    color:0x009999,
+    shininess:0,
+    specular:0xffffff,
+
+    shading:THREE.FlatShading
+  });
+  this.mesh = new THREE.Mesh(geom,mat);
+  this.mesh.castShadow = true;
+  this.angle = 0;
+  this.dist = 0;}
+  
+  Tambien se borro toda la publicidad que tenia, se agrego una canción para haacer más amigable el juego
+  y se cambio todo el aspecto con colores más llamativos.
+  
